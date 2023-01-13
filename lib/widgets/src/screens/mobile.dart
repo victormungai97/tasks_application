@@ -18,13 +18,14 @@ class Mobile extends HookWidget {
     return Scaffold(
       body: IndexedStack(
         index: currentIndex.value,
-        children: [
-          child ?? const SizedBox()
-        ],
+        children: [child ?? const SizedBox()],
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex.value,
-        items: navigationBarItems.map((item) => BottomNavigationBarItem(label: item.name, icon: item.icon)).toList(),
+        items: navigationBarItems
+            .map((item) =>
+                BottomNavigationBarItem(label: item.name, icon: item.icon))
+            .toList(),
         onTap: (index) {
           if (index != currentIndex.value) {
             currentIndex.value = index;

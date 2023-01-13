@@ -23,6 +23,10 @@ class Screen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenTypeLayout(mobile: Mobile(child: child), desktop: Desktop(child: child), tablet: Tablet(child: child),);
+    return ScreenTypeLayout(
+      mobile: Mobile(child: child),
+      desktop: Desktop(child: child),
+      tablet: Tablet(child: child),
+    );
   }
 }

@@ -9,20 +9,21 @@ class AppNavigationBar extends StatelessWidget {
     return ConstrainedBox(
       constraints: const BoxConstraints(minWidth: 200, maxWidth: 300),
       child: ColoredBox(
-      color: AppStyle.navigationBgColor,
-      child: ListView.separated(
-        padding: const EdgeInsets.symmetric(vertical: 64),
-        itemCount: navigationBarItems.length,
-        itemBuilder: (context, index) => _NavigationBarListItem(
-          item: navigationBarItems[index],
+        color: AppStyle.navigationBgColor,
+        child: ListView.separated(
+          padding: const EdgeInsets.symmetric(vertical: 64),
+          itemCount: navigationBarItems.length,
+          itemBuilder: (context, index) => _NavigationBarListItem(
+            item: navigationBarItems[index],
+          ),
+          separatorBuilder: (context, index) => const Divider(
+            color: AppStyle.navigationDividerColor,
+            height: 1,
+            endIndent: 16,
+            indent: 16,
+          ),
         ),
-        separatorBuilder: (context, index) => const Divider(
-          color: AppStyle.navigationDividerColor,
-          height: 1,
-          endIndent: 16,
-          indent: 16,
-        ),
-      ),),
+      ),
     );
   }
 }
@@ -52,9 +53,21 @@ class _NavigationBarListItem extends StatelessWidget {
 
 final navigationBarItems = [
   // TODO: labels should be in app localization file
-  NavigationBarItem(name: 'Tasks', url: 'tasks', icon: const Icon(Icons.task_alt_sharp),),
-  NavigationBarItem(name: 'Projects', url: 'projects', icon: const Icon(Icons.work),),
-  NavigationBarItem(name: 'Teams', url: 'teams', icon: const Icon(Icons.groups),),
+  NavigationBarItem(
+    name: 'Tasks',
+    url: 'tasks',
+    icon: const Icon(Icons.task_alt_sharp),
+  ),
+  NavigationBarItem(
+    name: 'Projects',
+    url: 'projects',
+    icon: const Icon(Icons.work),
+  ),
+  NavigationBarItem(
+    name: 'Teams',
+    url: 'teams',
+    icon: const Icon(Icons.groups),
+  ),
 ];
 
 class NavigationBarItem {
@@ -62,5 +75,6 @@ class NavigationBarItem {
   final String url;
   final Widget icon;
 
-  NavigationBarItem({required this.name, required this.url, this.icon = const Placeholder()});
+  NavigationBarItem(
+      {required this.name, required this.url, this.icon = const Placeholder()});
 }
