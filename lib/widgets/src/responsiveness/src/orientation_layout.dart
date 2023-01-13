@@ -23,7 +23,7 @@ class OrientationLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final child = portrait ?? SizedBox.new();
+    final child = portrait ?? const SizedBox.shrink();
     return ResponsiveLayoutBuilder(
       builder: (context, sizingInformation) {
         if (sizingInformation.orientation == Orientation.landscape) {
