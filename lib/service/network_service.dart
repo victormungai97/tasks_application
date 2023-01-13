@@ -42,7 +42,7 @@ class NetworkService {
         id: uuid.v4(),
         title: 'Plan work for next week',
         dateTime: now,
-        description: lorem(paragraphs: 3),
+        description: lorem(paragraphs: 6),
       ),
       Task(
         id: uuid.v4(),

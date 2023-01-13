@@ -1,0 +1,70 @@
+# This file defines a CI/CD workflow to run in Github Actions to release the web application
+
+# This workflow shall build the flutter app for the web
+# and shall only run when a push event is carried out on the specified branch(es)
+
+
+# Name of workflow.
+name: Flutter Build and Deploy Web Preview
+
+
+on:
+  # NB: This event will only trigger when not on branches specified in `branches-ignore`
+  push:
+    branches:
+      - "main"
+      - "master"
+    paths-ignore: [ '**/README.md' ]
+
+  pull_request:
+    branches: [ "master", "main" ]
+
+  workflow_dispatch:
+
+
+# Jobs will only run when test workflow completes successfully
+jobs:
+  build:
+    name: Create Web Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: "12.x"
+          cache: gradle
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.0.0"
+          channel: 'stable'
+          cache: true
+
+      - name: Get dependencies
+        run: flutter pub get
+
+      - name: Start Web Release Build
+        run: flutter build web --release
+
+      - name: Upload Web Build Files
+        uses: actions/upload-artifact@v2
+        with:
+          name: web-release
+          path: ./build/web
+
+  deploy:
+    name: Deploy Web Build
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download Web Release
+        uses: actions/download-artifact@v2
+        with:
+          name: web-release
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
