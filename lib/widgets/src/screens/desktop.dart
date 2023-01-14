@@ -17,8 +17,8 @@ class Desktop extends StatelessWidget {
     return Scaffold(
       body: Row(
         children: [
-          const AppNavigationBar(),
-          Expanded(child: child ?? const SizedBox()),
+          const Expanded(child: AppNavigationBar()),
+          Expanded(flex: 4, child: child ?? const SizedBox()),
         ],
       ),
       backgroundColor: AppStyle.canvasColor,

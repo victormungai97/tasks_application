@@ -2,7 +2,7 @@ name: task_list_app
 description: Task list application.
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-version: 1.0.0+3
+version: 1.0.0+4
 
 environment:
   sdk: '>=2.18.5 <3.0.0'
@@ -18,7 +18,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_lorem: ^2.0.0
-  uuid: ^3.0.7
+  intl: ^0.18.0
 
 dev_dependencies:
   build_runner: ^2.3.3

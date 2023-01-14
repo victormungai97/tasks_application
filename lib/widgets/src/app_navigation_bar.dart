@@ -6,9 +6,7 @@ class AppNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ConstrainedBox(
-      constraints: const BoxConstraints(minWidth: 200, maxWidth: 300),
-      child: ColoredBox(
+    return ColoredBox(
         color: AppStyle.navigationBgColor,
         child: ListView.separated(
           padding: const EdgeInsets.symmetric(vertical: 64),
@@ -22,7 +20,6 @@ class AppNavigationBar extends StatelessWidget {
             endIndent: 16,
             indent: 16,
           ),
-        ),
       ),
     );
   }
