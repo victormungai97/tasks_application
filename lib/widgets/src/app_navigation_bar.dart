@@ -1,18 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:task_list_app/common/common.dart';
+import 'package:task_list_app/service/service.dart';
 
-class AppNavigationBar extends StatelessWidget {
+class AppNavigationBar extends ConsumerWidget {
   const AppNavigationBar({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final currentIndex = ref.watch(indexServiceProvider);
     return ColoredBox(
       color: AppStyle.navigationBgColor,
       child: ListView.separated(
         padding: const EdgeInsets.symmetric(vertical: 64),
         itemCount: navigationBarItems.length,
-        itemBuilder: (context, index) => _NavigationBarListItem(
-          item: navigationBarItems[index],
+        itemBuilder: (context, index) => ListTile(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30),
+          ),
+          title: _NavigationBarListItem(
+            item: navigationBarItems[index],
+            selected: currentIndex == index,
+          ),
+          onTap: () => AppFunctions.updatePage(ref, index),
         ),
         separatorBuilder: (context, index) => const Divider(
           color: AppStyle.navigationDividerColor,
@@ -26,17 +36,19 @@ class AppNavigationBar extends StatelessWidget {
 }
 
 class _NavigationBarListItem extends StatelessWidget {
-  const _NavigationBarListItem({
-    Key? key,
-    required this.item,
-  }) : super(key: key);
+  const _NavigationBarListItem({required this.item, this.selected = false});
   final NavigationBarItem item;
+  final bool selected;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      decoration: BoxDecoration(
+        color: selected ? const Color(0xffB99443) : null,
+        borderRadius: const BorderRadius.all(Radius.circular(20)),
+      ),
       child: Text(
         item.name,
         style: const TextStyle(

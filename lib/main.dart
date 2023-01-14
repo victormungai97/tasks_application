@@ -1,10 +1,12 @@
 // lib/main.dart
 
+import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
-import 'package:task_list_app/home_page.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:task_list_app/navigation/navigation.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 /// Root widget
@@ -14,12 +16,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    final routerDelegate = routerDelegates.first;
+
+    return MaterialApp.router(
       title: 'Task list App',
       theme: ThemeData(
         primarySwatch: Colors.indigo,
       ),
-      home: const HomePage(),
+      routerDelegate: routerDelegate,
+      routeInformationParser: BeamerParser(),
+      // Integration of Android's back button with beaming
+      backButtonDispatcher: BeamerBackButtonDispatcher(
+        delegate: routerDelegate,
+      ),
       debugShowCheckedModeBanner: false,
     );
   }

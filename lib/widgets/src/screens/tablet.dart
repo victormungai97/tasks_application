@@ -6,17 +6,12 @@ part of 'screens.dart';
 
 class Tablet extends StatelessWidget {
   /// Constructor for ``[Tablet]``
-  const Tablet({super.key, this.child});
-
-  /// Creates a widget that rendered on **_tablet_** devices
-
-  final Widget? child;
-
+  const Tablet({super.key});
   @override
   Widget build(BuildContext context) {
-    return OrientationLayout(
-      landscape: Desktop(child: child),
-      portrait: Mobile(child: child),
+    return const OrientationLayout(
+      portrait: Mobile(),
+      landscape: Desktop(),
     );
   }
 }
