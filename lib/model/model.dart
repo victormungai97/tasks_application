@@ -1,3 +1,3 @@
 // lib/model/model.dart
 
-export './task/task.dart'; 
+export './task/task.dart';

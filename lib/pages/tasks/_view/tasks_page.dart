@@ -21,6 +21,10 @@ class TasksPage extends HookWidget {
     });
     final mediaQuery = MediaQuery.of(context);
     final deviceScreenType = getDeviceType(mediaQuery);
-    return deviceScreenType == DeviceScreenType.mobile || (deviceScreenType == DeviceScreenType.tablet && mediaQuery.orientation == Orientation.portrait) ? TasksMobileScreen(tasks: tasks.value) : TasksDesktopScreen(tasks: tasks.value);
+    return deviceScreenType == DeviceScreenType.mobile ||
+            (deviceScreenType == DeviceScreenType.tablet &&
+                mediaQuery.orientation == Orientation.portrait)
+        ? TasksMobileScreen(tasks: tasks.value)
+        : TasksDesktopScreen(tasks: tasks.value);
   }
 }

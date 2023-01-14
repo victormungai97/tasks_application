@@ -33,7 +33,6 @@ class TasksMobileScreen extends HookWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
               Container(
                 height: 80,
                 alignment: Alignment.bottomLeft,
@@ -42,52 +41,83 @@ class TasksMobileScreen extends HookWidget {
                   children: [
                     Expanded(
                       flex: 7,
-                      child: Text("Task ${task.value.id ?? ''}", style: const TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 24,),),
+                      child: Text(
+                        "Task ${task.value.id ?? ''}",
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 24,
+                        ),
+                      ),
                     ),
                     Expanded(
                       flex: 6,
                       child: Container(
                         height: 56,
-                        margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 12,),
+                        margin: const EdgeInsets.symmetric(
+                          vertical: 8,
+                          horizontal: 12,
+                        ),
                         child: DropdownButtonFormField<Task>(
-                            decoration: InputDecoration(
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(color: Colors.blueGrey, width: 2),
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              border: OutlineInputBorder(
-                                borderSide: const BorderSide(color: Colors.blueGrey, width: 2),
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              filled: true,
+                          decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                  color: Colors.blueGrey, width: 2),
+                              borderRadius: BorderRadius.circular(20),
                             ),
-                            value: task.value,
-                            onChanged: (Task? newTask) {
-                              if (newTask != null) task.value = newTask;
-                            },
-                            items: tasks.map((e) => DropdownMenuItem<Task>(value: e,child: Text("Task ${e.id ?? ''}"),),).toList(growable: false),),
+                            border: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                  color: Colors.blueGrey, width: 2),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            filled: true,
+                          ),
+                          value: task.value,
+                          onChanged: (Task? newTask) {
+                            if (newTask != null) task.value = newTask;
+                          },
+                          items: tasks
+                              .map(
+                                (e) => DropdownMenuItem<Task>(
+                                  value: e,
+                                  child: Text("Task ${e.id ?? ''}"),
+                                ),
+                              )
+                              .toList(growable: false),
+                        ),
                       ),
                     )
                   ],
-                ),),
+                ),
+              ),
               Divider(
                 color: Colors.blueGrey.shade200,
                 endIndent: 17,
                 indent: 16,
-                thickness: 1.5,),
-
-        Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
-        child: Text(DateFormat('dd/MM, H:mm').format(dt),
-                        style: TextStyle(color: Colors.grey.shade700, fontSize: 14,),),),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 24),
-                        child: Text(task.value.description ?? '',
-                          style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 17,),textAlign: TextAlign.justify,),
-                      ),
+                thickness: 1.5,
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
+                child: Text(
+                  DateFormat('dd/MM, H:mm').format(dt),
+                  style: TextStyle(
+                    color: Colors.grey.shade700,
+                    fontSize: 14,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: Text(
+                  task.value.description ?? '',
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontSize: 17,
+                  ),
+                  textAlign: TextAlign.justify,
+                ),
+              ),
             ],
           ),
         ),

@@ -16,7 +16,16 @@ class Mobile extends HookWidget {
   Widget build(BuildContext context) {
     final currentIndex = useState<int>(0);
     return Scaffold(
-      appBar: AppBar(title: const Text('Tasks',style: TextStyle(color: AppStyle.lightTextColor, ),),backgroundColor: AppStyle.navigationBgColor,centerTitle: true,),
+      appBar: AppBar(
+        title: const Text(
+          'Tasks',
+          style: TextStyle(
+            color: AppStyle.lightTextColor,
+          ),
+        ),
+        backgroundColor: AppStyle.navigationBgColor,
+        centerTitle: true,
+      ),
       body: IndexedStack(
         index: currentIndex.value,
         children: [child ?? const SizedBox()],
