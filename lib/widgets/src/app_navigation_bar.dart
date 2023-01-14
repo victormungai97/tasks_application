@@ -6,22 +6,19 @@ class AppNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ConstrainedBox(
-      constraints: const BoxConstraints(minWidth: 200, maxWidth: 300),
-      child: ColoredBox(
-        color: AppStyle.navigationBgColor,
-        child: ListView.separated(
-          padding: const EdgeInsets.symmetric(vertical: 64),
-          itemCount: navigationBarItems.length,
-          itemBuilder: (context, index) => _NavigationBarListItem(
-            item: navigationBarItems[index],
-          ),
-          separatorBuilder: (context, index) => const Divider(
-            color: AppStyle.navigationDividerColor,
-            height: 1,
-            endIndent: 16,
-            indent: 16,
-          ),
+    return ColoredBox(
+      color: AppStyle.navigationBgColor,
+      child: ListView.separated(
+        padding: const EdgeInsets.symmetric(vertical: 64),
+        itemCount: navigationBarItems.length,
+        itemBuilder: (context, index) => _NavigationBarListItem(
+          item: navigationBarItems[index],
+        ),
+        separatorBuilder: (context, index) => const Divider(
+          color: AppStyle.navigationDividerColor,
+          height: 1,
+          endIndent: 16,
+          indent: 16,
         ),
       ),
     );

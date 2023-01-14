@@ -15,5 +15,6 @@ class Task with _$Task {
     required String? description,
   }) = _Task;
 
+  /// Carry out conversion of json ``[Map]`` to ``[Task]`` object
   factory Task.fromJson(Map<String, dynamic> json) => _$TaskFromJson(json);
 }
