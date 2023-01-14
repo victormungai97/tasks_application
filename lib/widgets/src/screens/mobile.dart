@@ -4,47 +4,40 @@ part of 'screens.dart';
 
 /// Base widget for small screen widths
 
-class Mobile extends HookWidget {
+class Mobile extends HookConsumerWidget {
   /// Constructor for ``[Mobile]``
-  const Mobile({super.key, this.child});
-
-  /// Creates a widget that rendered on **_mobile_** devices
-
-  final Widget? child;
+  const Mobile({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final currentIndex = useState<int>(0);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final children =  routerDelegates.sublist(1).map((e) => Beamer(key: ValueKey(e),routerDelegate: e)).toList();
+    // watch the provider and rebuild when the page index changes
+    final currentIndex = ref.watch(indexServiceProvider);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
           'Tasks',
           style: TextStyle(
-            color: AppStyle.lightTextColor,
+            color: AppStyle.lightTextColor
           ),
         ),
         backgroundColor: AppStyle.navigationBgColor,
         centerTitle: true,
       ),
-      body: IndexedStack(
-        index: currentIndex.value,
-        children: [child ?? const SizedBox()],
-      ),
+      body: children.elementAt(currentIndex),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentIndex.value,
+        currentIndex: currentIndex,
         items: navigationBarItems
             .map(
-              (item) => BottomNavigationBarItem(
-                label: item.name,
-                icon: item.icon,
-              ),
+              (i) => BottomNavigationBarItem(
+                label: i.name,
+                icon: i.icon
+              )
             )
             .toList(),
-        onTap: (index) {
-          if (index != currentIndex.value) {
-            currentIndex.value = index;
-          }
-        },
+
+        onTap: (index) => AppFunctions.updatePage(ref, index),
       ),
       backgroundColor: AppStyle.canvasColor,
     );
