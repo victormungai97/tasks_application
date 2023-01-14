@@ -11,10 +11,10 @@ class ProjectsLocation extends BeamLocation<BeamState> {
 
   @override
   List<BeamPage> buildPages(BuildContext context, BeamState state) => [
-    BeamPage(
-      key: ValueKey('projects-${DateTime.now()}'),
-      title: 'Projects',
-      child: const ProjectsPage(),
-    )
-  ];
+        BeamPage(
+          key: ValueKey('projects-${DateTime.now()}'),
+          title: 'Projects',
+          child: const ProjectsPage(),
+        )
+      ];
 }

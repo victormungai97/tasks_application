@@ -10,7 +10,10 @@ class Mobile extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final children =  routerDelegates.sublist(1).map((e) => Beamer(key: ValueKey(e),routerDelegate: e)).toList();
+    final children = routerDelegates
+        .sublist(1)
+        .map((e) => Beamer(key: ValueKey(e), routerDelegate: e))
+        .toList();
     // watch the provider and rebuild when the page index changes
     final currentIndex = ref.watch(indexServiceProvider);
 
@@ -18,9 +21,7 @@ class Mobile extends HookConsumerWidget {
       appBar: AppBar(
         title: const Text(
           'Tasks',
-          style: TextStyle(
-            color: AppStyle.lightTextColor
-          ),
+          style: TextStyle(color: AppStyle.lightTextColor),
         ),
         backgroundColor: AppStyle.navigationBgColor,
         centerTitle: true,
@@ -29,14 +30,8 @@ class Mobile extends HookConsumerWidget {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
         items: navigationBarItems
-            .map(
-              (i) => BottomNavigationBarItem(
-                label: i.name,
-                icon: i.icon
-              )
-            )
+            .map((i) => BottomNavigationBarItem(label: i.name, icon: i.icon))
             .toList(),
-
         onTap: (index) => AppFunctions.updatePage(ref, index),
       ),
       backgroundColor: AppStyle.canvasColor,

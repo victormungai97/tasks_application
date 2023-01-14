@@ -10,7 +10,10 @@ class Desktop extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final children = routerDelegates.sublist(1).map((e) => Beamer(key: ValueKey(e), routerDelegate: e)).toList();
+    final children = routerDelegates
+        .sublist(1)
+        .map((e) => Beamer(key: ValueKey(e), routerDelegate: e))
+        .toList();
 
     // watch the provider and rebuild when the page index changes
     final currentIndex = ref.watch(indexServiceProvider);

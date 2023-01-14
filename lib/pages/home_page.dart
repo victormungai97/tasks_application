@@ -10,14 +10,9 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
 // watch the provider and rebuild when the page index changes
     return (context.currentBeamLocation.state as BeamState).uri.path.isEmpty
-      ? const Center(
-        child: Text('Home')
-      )
-    :
-    const Screen();
-
+        ? const Center(child: Text('Home'))
+        : const Screen();
   }
 }

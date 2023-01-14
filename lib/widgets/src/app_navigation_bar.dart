@@ -36,10 +36,7 @@ class AppNavigationBar extends ConsumerWidget {
 }
 
 class _NavigationBarListItem extends StatelessWidget {
-  const _NavigationBarListItem({
-    required this.item,
-    this.selected = false
-  });
+  const _NavigationBarListItem({required this.item, this.selected = false});
   final NavigationBarItem item;
   final bool selected;
 
@@ -50,9 +47,8 @@ class _NavigationBarListItem extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: BoxDecoration(
         color: selected ? const Color(0xffB99443) : null,
-          borderRadius: const BorderRadius.all(Radius.circular(20)),
+        borderRadius: const BorderRadius.all(Radius.circular(20)),
       ),
-
       child: Text(
         item.name,
         style: const TextStyle(
