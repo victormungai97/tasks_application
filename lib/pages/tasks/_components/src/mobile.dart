@@ -23,10 +23,10 @@ class TasksMobileScreen extends StatelessWidget {
 
     return SafeArea(
       child: SingleChildScrollView(
-          physics: const ClampingScrollPhysics(),
-          child: SizedBox(child: _TasksSection(tasks: tasks)),
-        ),
-      );
+        physics: const ClampingScrollPhysics(),
+        child: SizedBox(child: _TasksSection(tasks: tasks)),
+      ),
+    );
   }
 }
 
@@ -40,33 +40,35 @@ class _TasksSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-      Container(
-      height: 80,
-      alignment: Alignment.bottomLeft,
-      margin: const EdgeInsets.only(left: 28, bottom: 2.5),
-      child: Row(
-        children: const [
-          Expanded(
-            flex: 7,
-            child: Text(
-              'Tasks',
-              style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.w500,
-                fontSize: 24,
+        Container(
+          height: 80,
+          alignment: Alignment.bottomLeft,
+          margin: const EdgeInsets.only(left: 28, bottom: 2.5),
+          child: Row(
+            children: const [
+              Expanded(
+                flex: 7,
+                child: Text(
+                  'Tasks',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 24,
+                  ),
+                ),
               ),
-            ),
+            ],
           ),
-        ],
-      ),
-    ),
-    Divider(
-    color: Colors.blueGrey.shade200,
-    endIndent: 17,
-    indent: 16,
-    thickness: 1.5,
-    ),const SizedBox(height: 20),...tasks.map(
-              (element) {
+        ),
+        Divider(
+          color: Colors.blueGrey.shade200,
+          endIndent: 17,
+          indent: 16,
+          thickness: 1.5,
+        ),
+        const SizedBox(height: 20),
+        ...tasks.map(
+          (element) {
             final dt = element.dateTime ?? DateTime.now();
             return Padding(
               padding: const EdgeInsets.fromLTRB(16, 0, 16, 15),
@@ -84,15 +86,21 @@ class _TasksSection extends StatelessWidget {
                 ),
                 onTap: () {
                   // TODO Navigate to self contained task screen
-                  showDialog<dynamic>(context: context, builder: (_) => Dialog(child: _TaskSection(task: element),),);
+                  showDialog<dynamic>(
+                    context: context,
+                    builder: (_) => Dialog(
+                      child: _TaskSection(task: element),
+                    ),
+                  );
                 },
               ),
             );
           },
-        ),],);
+        ),
+      ],
+    );
   }
 }
-
 
 class _TaskSection extends StatelessWidget {
   const _TaskSection({required this.task});
@@ -132,8 +140,10 @@ class _TaskSection extends StatelessWidget {
           thickness: 1.5,
         ),
         Padding(
-          padding:
-          const EdgeInsets.symmetric(horizontal: 24, vertical: 10,),
+          padding: const EdgeInsets.symmetric(
+            horizontal: 24,
+            vertical: 10,
+          ),
           child: Text(
             _dateFormat.format(dt),
             style: TextStyle(
@@ -157,4 +167,3 @@ class _TaskSection extends StatelessWidget {
     );
   }
 }
-

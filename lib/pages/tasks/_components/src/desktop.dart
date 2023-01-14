@@ -30,9 +30,14 @@ class TasksDesktopScreen extends HookWidget {
           ? Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                Expanded(child: _TasksSection(tasks: tasks, onSelected: (selected) {
-                  if (selected != null) task.value = selected;
-                },),),
+                Expanded(
+                  child: _TasksSection(
+                    tasks: tasks,
+                    onSelected: (selected) {
+                      if (selected != null) task.value = selected;
+                    },
+                  ),
+                ),
                 const VerticalDivider(thickness: 2),
                 Expanded(child: _TaskSection(task: task.value)),
               ],
@@ -102,7 +107,9 @@ class _TasksSection extends StatelessWidget {
                         ),
                         onTap: () {
                           // TODO Update URL and navigation stack
-                          if (onSelected != null) {Function.apply(onSelected!, [element]);}
+                          if (onSelected != null) {
+                            Function.apply(onSelected!, [element]);
+                          }
                         },
                       ),
                     );
