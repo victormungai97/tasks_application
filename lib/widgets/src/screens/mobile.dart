@@ -35,7 +35,7 @@ class Mobile extends HookWidget {
         items: navigationBarItems
             .map(
               (item) =>
-                  BottomNavigationBarItem(label: item.name, icon: item.icon),
+                  BottomNavigationBarItem(label: item.name, icon: item.icon,),
             )
             .toList(),
         onTap: (index) {

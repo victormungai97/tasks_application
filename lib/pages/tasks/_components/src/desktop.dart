@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:intl/intl.dart';
 import 'package:task_list_app/model/model.dart';
-import 'package:task_list_app/service/service.dart';
 
 final _dateFormat = DateFormat('dd/MM, H:mm');
 
@@ -19,15 +18,23 @@ class TasksDesktopScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (tasks.isEmpty) {
+      return const Center(child: Text('Tasks'));
+    }
+
+    final task = useState<Task>(tasks.first);
+
     return SizedBox(
       height: MediaQuery.of(context).size.height,
       child: tasks.isNotEmpty
           ? Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                Expanded(child: _TasksSection(tasks: tasks)),
+                Expanded(child: _TasksSection(tasks: tasks, onSelected: (selected) {
+                  if (selected != null) task.value = selected;
+                },),),
                 const VerticalDivider(thickness: 2),
-                Expanded(child: _TaskSection(task: tasks.first)),
+                Expanded(child: _TaskSection(task: task.value)),
               ],
             )
           : const Center(child: Text('Tasks')),
@@ -36,9 +43,11 @@ class TasksDesktopScreen extends HookWidget {
 }
 
 class _TasksSection extends StatelessWidget {
-  const _TasksSection({this.tasks = const []});
+  const _TasksSection({this.tasks = const [], this.onSelected});
 
   final List<Task> tasks;
+
+  final void Function(Task?)? onSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -91,6 +100,10 @@ class _TasksSection extends StatelessWidget {
                             color: Colors.grey.shade700,
                           ),
                         ),
+                        onTap: () {
+                          // TODO Update URL and navigation stack
+                          if (onSelected != null) {Function.apply(onSelected!, [element]);}
+                        },
                       ),
                     );
                   },
