@@ -12,9 +12,6 @@ on:
 
   workflow_dispatch:
 
-env:
-  PULL_REQUEST_NUMBER: 1
-
 # Jobs will only run when test workflow completes successfully
 jobs:
   pull-request:
@@ -38,7 +35,7 @@ jobs:
         uses: juliangruber/approve-pull-request-action@v2.0.3
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          number: $PULL_REQUEST_NUMBER
+          number: 1
           repo: ${{ github.repository }}
         env:
           number: ${{ steps.find-pull-request.outputs.number }}
@@ -48,7 +45,7 @@ jobs:
         uses: juliangruber/merge-pull-request-action@v1.1.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          number: $PULL_REQUEST_NUMBER
+          number: 1
           method: merge
           repo: ${{ github.repository }}
         env:
