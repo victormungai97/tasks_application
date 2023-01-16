@@ -1,7 +1,7 @@
 // lib/common/src/app_functions.dart
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:task_list_app/navigation/navigation.dart';
+import 'package:task_list_app/locations/locations.dart';
 import 'package:task_list_app/service/service.dart';
 
 /// Miscellaneous functions used in various part of the application

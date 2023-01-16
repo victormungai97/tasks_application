@@ -6,10 +6,18 @@
 */
 
 import 'package:beamer/beamer.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_context/riverpod_context.dart';
+import 'package:task_list_app/model/model.dart';
 import 'package:task_list_app/pages/pages.dart';
+import 'package:task_list_app/screens/screens.dart';
+import 'package:task_list_app/service/service.dart' hide Task;
+import 'package:task_list_app/widgets/widgets.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
-// Navigation is done by declaration of 1 or more `BeamLocation` subclasses.
+/* Navigation is done by declaration of 1 or more `BeamLocation` subclasses. */
+
 part 'home.dart';
 part 'projects.dart';
 part 'tasks.dart';
@@ -20,6 +28,7 @@ final routerDelegates = [
   /* This declares a single route that matches the ``['*']`` (universal) path
      and returns the root ``[HomePage]`` widget */
   BeamerDelegate(
+    initialPath: '/home',
     transitionDelegate: const NoAnimationTransitionDelegate(),
     locationBuilder: (routeInformation, _) => HomeLocation(routeInformation),
   ),
@@ -33,11 +42,11 @@ final routerDelegates = [
       }
       return NotFound(path: routeInformation.location!);
     },
-    transitionDelegate: const ReverseTransitionDelegate(),
   ),
 
   /* This delegate matches projects paths and returns project page */
   BeamerDelegate(
+    transitionDelegate: const ReverseTransitionDelegate(),
     locationBuilder: (routeInformation, _) {
       if (routeInformation.location!.contains('projects')) {
         return ProjectsLocation(routeInformation);
