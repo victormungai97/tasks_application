@@ -2,21 +2,22 @@
 
 # This workflow shall attempt to find, approve and merge pull requests automatically
 
-name: Test Pipeline
+name: Pull Request Actions Automation Pipeline
+
 
 on:
 
   pull_request:
-    branches: [${{ vars.PULL_REQUEST_TARGET_BRANCH }}]
+    branches: [ "master" ]
 
   workflow_dispatch:
 
 
+# Jobs will only run when test workflow completes successfully
 jobs:
   pull-request:
-
+    name: Automate PR Actions
     runs-on: ubuntu-latest
-
     steps:
       - name: Find Pull Request
         uses: juliangruber/find-pull-request-action@v1
@@ -25,11 +26,6 @@ jobs:
         # Read more on env and other variables: https://docs.github.com/en/actions/learn-github-actions/variables
         with:
           branch: ${{ vars.PULL_REQUEST_TARGET_BRANCH }}
-
-      - run: echo "Pull Request ${number} (${sha})"
-        env:
-          number: ${{ steps.find-pull-request.outputs.number }}
-          sha: ${{ steps.find-pull-request.outputs.head-sha }}
 
       - name: Approve Pull Request
         uses: juliangruber/approve-pull-request-action@v2.0.0
