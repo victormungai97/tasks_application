@@ -1,6 +1,6 @@
-// lib/navigation/projects.dart
+// lib/locations/projects.dart
 
-part of 'navigation.dart';
+part of 'locations.dart';
 
 /// Location defining the projects
 class ProjectsLocation extends BeamLocation<BeamState> {

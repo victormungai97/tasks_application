@@ -1,6 +1,6 @@
-// lib/navigation/teams.dart
+// lib/locations/teams.dart
 
-part of 'navigation.dart';
+part of 'locations.dart';
 
 /// Location defining the teams
 class TeamsLocation extends BeamLocation<BeamState> {

@@ -1,8 +1,8 @@
-// lib/widgets/src/screens/tablet.dart
+// lib/screens/devices/tablet.dart
 
-part of 'screens.dart';
+part of '../screens.dart';
 
-/// Base widget for large screen widths
+/// Base widget for medium screen widths
 
 class Tablet extends StatelessWidget {
   /// Constructor for ``[Tablet]``

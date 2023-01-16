@@ -1,6 +1,6 @@
-// lib/widgets/src/screens/mobile.dart
+// lib/screens/devices/mobile.dart
 
-part of 'screens.dart';
+part of '../screens.dart';
 
 /// Base widget for small screen widths
 
@@ -10,12 +10,10 @@ class Mobile extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final children = routerDelegates
-        .sublist(1)
-        .map((e) => Beamer(key: ValueKey(e), routerDelegate: e))
-        .toList();
     // watch the provider and rebuild when the page index changes
     final currentIndex = ref.watch(indexServiceProvider);
+
+    final child = currentIndex < routerDelegates.length && currentIndex >= 0 ? children.elementAt(currentIndex) : const Center(child: Text('Not Found'));
 
     return Scaffold(
       appBar: AppBar(
@@ -26,7 +24,7 @@ class Mobile extends HookConsumerWidget {
         backgroundColor: AppStyle.navigationBgColor,
         centerTitle: true,
       ),
-      body: children.elementAt(currentIndex),
+      body: child,
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
         items: navigationBarItems
