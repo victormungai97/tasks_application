@@ -1,0 +1,53 @@
+# This file defines a CI/CD workflow to run in Github Actions to carry out pull request resolution
+
+# This workflow shall attempt to find, approve and merge pull requests automatically
+
+name: Test Pipeline
+
+on:
+
+  pull_request:
+    branches: [${{ vars.PULL_REQUEST_TARGET_BRANCH }}]
+
+  workflow_dispatch:
+
+
+jobs:
+  pull-request:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Find Pull Request
+        uses: juliangruber/find-pull-request-action@v1
+        id: find-pull-request
+        # Use configuration variable set in repository, organization or environment level
+        # Read more on env and other variables: https://docs.github.com/en/actions/learn-github-actions/variables
+        with:
+          branch: ${{ vars.PULL_REQUEST_TARGET_BRANCH }}
+
+      - run: echo "Pull Request ${number} (${sha})"
+        env:
+          number: ${{ steps.find-pull-request.outputs.number }}
+          sha: ${{ steps.find-pull-request.outputs.head-sha }}
+
+      - name: Approve Pull Request
+        uses: juliangruber/approve-pull-request-action@v2.0.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          number: ${number}
+          repo: ${{ github.repository }}
+        env:
+          number: ${{ steps.find-pull-request.outputs.number }}
+          sha: ${{ steps.find-pull-request.outputs.head-sha }}
+
+      - name: Merge Pull Request
+        uses: juliangruber/merge-pull-request-action@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          number: ${number}
+          method: merge
+          repo: ${{ github.repository }}
+        env:
+          number: ${{ steps.find-pull-request.outputs.number }}
+          sha: ${{ steps.find-pull-request.outputs.head-sha }}
