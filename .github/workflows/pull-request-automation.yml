@@ -27,6 +27,11 @@ jobs:
         with:
           branch: ${{ vars.PULL_REQUEST_TARGET_BRANCH }}
 
+      - run: echo "Pull Request ${number} (${sha})"
+        env:
+          number: ${{ steps.find-pull-request.outputs.number }}
+          sha: ${{ steps.find-pull-request.outputs.head-sha }}
+
       - name: Approve Pull Request
         uses: juliangruber/approve-pull-request-action@v2.0.0
         with:
