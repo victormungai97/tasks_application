@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Find Pull Request
-        uses: juliangruber/find-pull-request-action@v1
+        uses: juliangruber/find-pull-request-action@v1.7.2
         id: find-pull-request
         # Use configuration variable set in repository, organization or environment level
         # Read more on env and other variables: https://docs.github.com/en/actions/learn-github-actions/variables
@@ -33,7 +33,7 @@ jobs:
           sha: ${{ steps.find-pull-request.outputs.head-sha }}
 
       - name: Approve Pull Request
-        uses: juliangruber/approve-pull-request-action@v2.0.0
+        uses: juliangruber/approve-pull-request-action@v2.0.3
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           number: ${number}
@@ -43,7 +43,7 @@ jobs:
           sha: ${{ steps.find-pull-request.outputs.head-sha }}
 
       - name: Merge Pull Request
-        uses: juliangruber/merge-pull-request-action@v1
+        uses: juliangruber/merge-pull-request-action@v1.1.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           number: ${number}
