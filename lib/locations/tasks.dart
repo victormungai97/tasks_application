@@ -14,7 +14,8 @@ class TasksLocation extends BeamLocation<BeamState> {
   List<BeamPage> buildPages(BuildContext context, BeamState state) {
     // Retrieve task ID if any provided and set it as state in provider
     if (state.pathParameters.containsKey('taskId')) {
-      Future(() => context.read(taskServiceProvider.notifier).update = state.pathParameters['taskId']);
+      Future(() => context.read(taskServiceProvider.notifier).update =
+          state.pathParameters['taskId']);
     } else {
       Future(() => context.read(taskServiceProvider.notifier).update = null);
     }
@@ -37,9 +38,11 @@ class TasksLocation extends BeamLocation<BeamState> {
       final taskID = context.watch(taskServiceProvider);
       context.watch(tasksFutureProvider).whenOrNull(
         data: (duties) {
-      // 2. select appropriate task based on given ID
-      task = taskID != null && duties.map((e) => e.id).contains(taskID) ? duties.singleWhere((e) => e.id == taskID) : null;
-      // 3. Update available tasks
+          // 2. select appropriate task based on given ID
+          task = taskID != null && duties.map((e) => e.id).contains(taskID)
+              ? duties.singleWhere((e) => e.id == taskID)
+              : null;
+          // 3. Update available tasks
           tasks = duties;
         },
       );

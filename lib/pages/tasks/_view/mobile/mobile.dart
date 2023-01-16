@@ -24,10 +24,12 @@ class TasksMobileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => SafeArea(
-      child: ColoredBox(
-        color: AppStyle.canvasColor,
-        child: SingleChildScrollView(
-        physics: const ClampingScrollPhysics(),
-  child: child ?? const SizedBox(),),
-      ),);
+        child: ColoredBox(
+          color: AppStyle.canvasColor,
+          child: SingleChildScrollView(
+            physics: const ClampingScrollPhysics(),
+            child: child ?? const SizedBox(),
+          ),
+        ),
+      );
 }

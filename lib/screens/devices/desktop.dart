@@ -12,8 +12,10 @@ class Desktop extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     // watch the provider and rebuild when the page index changes
     final currentIndex = ref.watch(indexServiceProvider);
-    
-    final child = currentIndex < routerDelegates.length && currentIndex >= 0 ? children.elementAt(currentIndex) : const Center(child: Text('Not Found'));
+
+    final child = currentIndex < routerDelegates.length && currentIndex >= 0
+        ? children.elementAt(currentIndex)
+        : const Center(child: Text('Not Found'));
 
     return Scaffold(
       body: Row(

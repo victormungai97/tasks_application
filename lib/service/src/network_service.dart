@@ -15,7 +15,6 @@ final tasksFutureProvider = FutureProvider.autoDispose<List<Task>>((ref) {
   return networkService.getTasks();
 });
 
-
 /// ``[Provider]`` that globally avails an instance of ``[NetworkService]``,
 /// which is unchangeable,
 /// for use in other parts of the code base.

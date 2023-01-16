@@ -21,26 +21,34 @@ class HomeLocation extends BeamLocation<BeamState> {
             orientation == Orientation.portrait);
 
     return [
-        BeamPage(
-          key: ValueKey('home-${DateTime.now()}'),
-          title: 'Home',
-          child: Center(
-  child: ClipRect(
-  child: Banner(
-  message: 'Fork me on GitHub',
-  location: isMobile ? BannerLocation.topEnd : BannerLocation.topStart,
-  child:  Material(
-    child: GestureDetector(
-      child: (context.currentBeamLocation.state as BeamState).uri.path.isEmpty
-                    ? const Center(child: Text('Home'))
-                    : const Screen(),
-      onTap: () async {
-        if (await canLaunchUrlString(_repoURL)) {await launchUrlString(_repoURL);}
-      },
-    ),
-  ),
+      BeamPage(
+        key: ValueKey('home-${DateTime.now()}'),
+        title: 'Home',
+        child: Center(
+          child: ClipRect(
+            child: Banner(
+              message: 'Fork me on GitHub',
+              location:
+                  isMobile ? BannerLocation.topEnd : BannerLocation.topStart,
+              child: Material(
+                child: GestureDetector(
+                  child: (context.currentBeamLocation.state as BeamState)
+                          .uri
+                          .path
+                          .isEmpty
+                      ? const Center(child: Text('Home'))
+                      : const Screen(),
+                  onTap: () async {
+                    if (await canLaunchUrlString(_repoURL)) {
+                      await launchUrlString(_repoURL);
+                    }
+                  },
+                ),
+              ),
+            ),
           ),
-        ),),),
-      ];
+        ),
+      ),
+    ];
   }
 }

@@ -7,11 +7,7 @@ import 'package:riverpod_context/riverpod_context.dart';
 import 'package:task_list_app/locations/locations.dart';
 
 void main() {
-  runApp(const ProviderScope(
-    child: InheritedConsumer(
-      child: MyApp()
-    )
-  ));
+  runApp(const ProviderScope(child: InheritedConsumer(child: MyApp())));
 }
 
 /// Root widget

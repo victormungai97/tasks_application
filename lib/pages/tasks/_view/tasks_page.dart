@@ -23,22 +23,27 @@ class TasksPage extends ConsumerWidget {
     final tasksAsync = ref.watch(tasksFutureProvider);
     // use pattern matching to map the state to the UI
     return tasksAsync.when(
-        loading: () => const CircularProgressIndicator(),
-        error: (err, stack) {
-          log('Problem occurred loading tasks', error: err, stackTrace: stack, time: DateTime.now(),);
-          return Text('Error: $err');
-        },
-        data: (tasks) {
+      loading: () => const CircularProgressIndicator(),
+      error: (err, stack) {
+        log(
+          'Problem occurred loading tasks',
+          error: err,
+          stackTrace: stack,
+          time: DateTime.now(),
+        );
+        return Text('Error: $err');
+      },
+      data: (tasks) {
+        final mediaQuery = MediaQuery.of(context);
+        final deviceScreenType = getDeviceType(mediaQuery);
+        final orientation = mediaQuery.orientation;
 
-    final mediaQuery = MediaQuery.of(context);
-    final deviceScreenType = getDeviceType(mediaQuery);
-    final orientation = mediaQuery.orientation;
-
-    return deviceScreenType == DeviceScreenType.mobile ||
-    (deviceScreenType == DeviceScreenType.tablet &&
-    orientation == Orientation.portrait)
-    ? const TasksMobileScreen()
-        : TasksDesktopScreen(tasks: tasks);
-    },);
+        return deviceScreenType == DeviceScreenType.mobile ||
+                (deviceScreenType == DeviceScreenType.tablet &&
+                    orientation == Orientation.portrait)
+            ? const TasksMobileScreen()
+            : TasksDesktopScreen(tasks: tasks);
+      },
+    );
   }
 }

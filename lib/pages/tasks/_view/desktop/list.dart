@@ -44,9 +44,10 @@ class _ListSection extends ConsumerWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: tasks.map(
-                      (element) {
+                  (element) {
                     final dt = element.dateTime ?? DateTime.now();
-                    final title = element.title ?? 'Task ${tasks.indexOf(element)}';
+                    final title =
+                        element.title ?? 'Task ${tasks.indexOf(element)}';
 
                     return Padding(
                       padding: const EdgeInsets.only(bottom: 15),
@@ -55,14 +56,21 @@ class _ListSection extends ConsumerWidget {
                           borderRadius: BorderRadius.circular(30),
                         ),
                         tileColor: Colors.grey.shade300,
-                        title: Text(title, style: taskID == element.id ? const TextStyle(fontWeight: FontWeight.bold) : null,),
+                        title: Text(
+                          title,
+                          style: taskID == element.id
+                              ? const TextStyle(fontWeight: FontWeight.bold)
+                              : null,
+                        ),
                         trailing: Text(
                           _dateFormat.format(dt),
                           style: TextStyle(
                             color: Colors.grey.shade700,
                           ),
                         ),
-                        onTap: () => context.beamToNamed('/tasks/${element.id ?? ""}',),
+                        onTap: () => context.beamToNamed(
+                          '/tasks/${element.id ?? ""}',
+                        ),
                       ),
                     );
                   },

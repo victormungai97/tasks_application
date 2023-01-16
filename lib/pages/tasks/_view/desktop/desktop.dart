@@ -30,7 +30,9 @@ class TasksDesktopScreen extends ConsumerWidget {
     // 1. watch the task ID provider and rebuild when the value changes
     final taskID = ref.watch(taskServiceProvider);
     // 2. select appropriate task based on given ID
-    final task = taskID != null && tasks.map((e) => e.id).contains(taskID) ? tasks.singleWhere((e) => e.id == taskID) : null;
+    final task = taskID != null && tasks.map((e) => e.id).contains(taskID)
+        ? tasks.singleWhere((e) => e.id == taskID)
+        : null;
 
     return SizedBox(
       height: MediaQuery.of(context).size.height,
@@ -39,8 +41,7 @@ class TasksDesktopScreen extends ConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 Expanded(
-                  child: _ListSection(
-                    tasks: tasks),
+                  child: _ListSection(tasks: tasks),
                 ),
                 const VerticalDivider(thickness: 2),
                 // 3. use the selected task

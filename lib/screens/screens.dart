@@ -39,7 +39,6 @@ class Screen extends ConsumerStatefulWidget {
 }
 
 class _ScreenState extends ConsumerState<Screen> {
-
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -57,7 +56,9 @@ class _ScreenState extends ConsumerState<Screen> {
         pageIndex = -1;
       }
       ref.read(indexServiceProvider.notifier).state = pageIndex;
-      routerDelegates[ref.read(indexServiceProvider) + 1].update(rebuild: false,);
+      routerDelegates[ref.read(indexServiceProvider) + 1].update(
+        rebuild: false,
+      );
     });
   }
 
