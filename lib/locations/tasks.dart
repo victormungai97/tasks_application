@@ -2,7 +2,6 @@
 
 part of 'locations.dart';
 
-
 /// Location defining the pages for the tasks tab
 class TasksLocation extends BeamLocation<BeamState> {
   /// Constructor for ``[TasksLocation]``
@@ -11,21 +10,19 @@ class TasksLocation extends BeamLocation<BeamState> {
   @override
   List<String> get pathPatterns => ['/tasks/*'];
 
-
   @override
   List<BeamPage> buildPages(BuildContext context, BeamState state) {
     // Future(() => context.read(taskIDProvider.notifier).update = null);
 
     return [
-    BeamPage(
-      key: ValueKey('tasks-${DateTime.now()}'),
-      title: context.localize.tasks,
-      child: const TasksPage(),
-    ),
-  ];
+      BeamPage(
+        key: ValueKey('tasks-${DateTime.now()}'),
+        title: context.localize.tasks,
+        child: const TasksPage(),
+      ),
+    ];
   }
 }
-
 
 /// Location defining visibility of a single task
 class TaskDetailLocation extends BeamLocation<BeamState> {
@@ -39,8 +36,10 @@ class TaskDetailLocation extends BeamLocation<BeamState> {
   List<BeamPage> buildPages(BuildContext context, BeamState state) {
     // Retrieve task ID if any provided and set it as state in provider
     if (state.pathParameters.containsKey('taskId')) {
-      Future(() => context.read(taskIDProvider.notifier).update =
-      state.pathParameters['taskId'],);
+      Future(
+        () => context.read(taskIDProvider.notifier).update =
+            state.pathParameters['taskId'],
+      );
     }
 
     return [

@@ -15,7 +15,12 @@ class Mobile extends HookConsumerWidget {
 
     final child = currentIndex < routerDelegates.length && currentIndex >= 0
         ? children.elementAt(currentIndex)
-        : Center(child: Text(context.localize.page_not_found, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 24),),);
+        : Center(
+            child: Text(
+              context.localize.page_not_found,
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+            ),
+          );
 
     // watch for locales used in app
     final locales = ref.watch(localesProvider);
@@ -31,28 +36,40 @@ class Mobile extends HookConsumerWidget {
         actions: [
           Padding(
             padding: const EdgeInsets.all(8),
-            child: IconButton(onPressed: () => showModalBottomSheet<dynamic>(
-              context: context,
-              builder: (context) {
-                return Wrap(
-                  children: locales.map((locale) => ListTile(
-                    title: Container(
-                      decoration: BoxDecoration(
-                        color: selectedLocale == locale ? const Color(0xffB99443) : null,
-                        borderRadius: const BorderRadius.all(Radius.circular(20),),
-                      ),
-                      padding: const EdgeInsets.all(10),
-                      child: Text(
-                        locale.toLanguageTag(),
-
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                    onTap: () => ref.read(localeProvider.notifier).changeLanguage(locale),
-                  ),).toList(),
-                );
-              },
-            ), icon: const Icon(Icons.translate),),
+            child: IconButton(
+              onPressed: () => showModalBottomSheet<dynamic>(
+                context: context,
+                builder: (context) {
+                  return Wrap(
+                    children: locales
+                        .map(
+                          (locale) => ListTile(
+                            title: Container(
+                              decoration: BoxDecoration(
+                                color: selectedLocale == locale
+                                    ? const Color(0xffB99443)
+                                    : null,
+                                borderRadius: const BorderRadius.all(
+                                  Radius.circular(20),
+                                ),
+                              ),
+                              padding: const EdgeInsets.all(10),
+                              child: Text(
+                                locale.toLanguageTag(),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                            onTap: () => ref
+                                .read(localeProvider.notifier)
+                                .changeLanguage(locale),
+                          ),
+                        )
+                        .toList(),
+                  );
+                },
+              ),
+              icon: const Icon(Icons.translate),
+            ),
           ),
         ],
         centerTitle: true,

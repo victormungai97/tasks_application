@@ -37,9 +37,8 @@ class MyApp extends ConsumerWidget {
       // Parses an incoming URI
       routeInformationParser: BeamerParser(),
       // Integration of Android's back button with beaming
-      backButtonDispatcher: BeamerBackButtonDispatcher(
-        delegate: routerDelegate
-      ),
+      backButtonDispatcher:
+          BeamerBackButtonDispatcher(delegate: routerDelegate),
       debugShowCheckedModeBanner: false,
     );
   }

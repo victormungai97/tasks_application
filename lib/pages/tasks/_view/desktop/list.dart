@@ -46,8 +46,8 @@ class _ListSection extends ConsumerWidget {
                 children: tasks.map(
                   (element) {
                     final dt = element.dateTime ?? DateTime.now();
-                    final title =
-                        element.title ?? '${context.localize.task} ${tasks.indexOf(element)}';
+                    final title = element.title ??
+                        '${context.localize.task} ${tasks.indexOf(element)}';
 
                     return Padding(
                       padding: const EdgeInsets.only(bottom: 15),
@@ -69,9 +69,7 @@ class _ListSection extends ConsumerWidget {
                           ),
                         ),
                         onTap: () {
-                          context.beamToNamed(
-                          '/tasks/${element.id ?? ""}'
-                        );
+                          context.beamToNamed('/tasks/${element.id ?? ""}');
                         },
                       ),
                     );

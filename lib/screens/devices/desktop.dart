@@ -15,7 +15,12 @@ class Desktop extends ConsumerWidget {
 
     final child = currentIndex < routerDelegates.length && currentIndex >= 0
         ? children.elementAt(currentIndex)
-        : Center(child: Text(context.localize.page_not_found, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 24),),);
+        : Center(
+            child: Text(
+              context.localize.page_not_found,
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+            ),
+          );
 
     // watch for locales used in app
     final locales = ref.watch(localesProvider);
@@ -25,33 +30,60 @@ class Desktop extends ConsumerWidget {
       body: Row(
         children: [
           Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Expanded(child: AppNavigationBar()),
-                  Consumer(builder: (context, ref, child) {
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Expanded(child: AppNavigationBar()),
+                Consumer(
+                  builder: (context, ref, child) {
                     return Container(
                       color: AppStyle.navigationBgColor,
                       width: MediaQuery.of(context).size.width,
-                      child: ExpansionTile(title: Text(context.localize.change_language, style: const TextStyle(color: AppStyle.lightTextColor,),), leading: const Icon(Icons.translate, color: Colors.white,), children: locales.map((locale) => ListTile(
-                        title: Container(
-                          decoration: BoxDecoration(
-                            color: selectedLocale == locale ? const Color(0xffB99443) : null,
-                            borderRadius: const BorderRadius.all(Radius.circular(20),),
-                          ),
-                          padding: const EdgeInsets.all(10),
-                          child: Text(
-                            locale.toLanguageTag(),
-                            style: const TextStyle(fontWeight: FontWeight.w700, color: AppStyle.lightTextColor,),
-                            textAlign: TextAlign.center,
+                      child: ExpansionTile(
+                        title: Text(
+                          context.localize.change_language,
+                          style: const TextStyle(
+                            color: AppStyle.lightTextColor,
                           ),
                         ),
-                        onTap: () => ref.read(localeProvider.notifier).changeLanguage(locale),
-                      ),).toList(),),
+                        leading: const Icon(
+                          Icons.translate,
+                          color: Colors.white,
+                        ),
+                        children: locales
+                            .map(
+                              (locale) => ListTile(
+                                title: Container(
+                                  decoration: BoxDecoration(
+                                    color: selectedLocale == locale
+                                        ? const Color(0xffB99443)
+                                        : null,
+                                    borderRadius: const BorderRadius.all(
+                                      Radius.circular(20),
+                                    ),
+                                  ),
+                                  padding: const EdgeInsets.all(10),
+                                  child: Text(
+                                    locale.toLanguageTag(),
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      color: AppStyle.lightTextColor,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                                onTap: () => ref
+                                    .read(localeProvider.notifier)
+                                    .changeLanguage(locale),
+                              ),
+                            )
+                            .toList(),
+                      ),
                     );
-                  },),
-                ],
-              ),
+                  },
+                ),
+              ],
+            ),
           ),
           Expanded(flex: 4, child: child),
         ],

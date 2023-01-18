@@ -8,5 +8,7 @@ class AppNavigationBar extends StatelessWidget {
   const AppNavigationBar({super.key});
 
   @override
-  Widget build(BuildContext context) => context.isMobileView ? const _MobileNavigationBar() : const _DesktopNavigationBar();
+  Widget build(BuildContext context) => context.isMobileView
+      ? const _MobileNavigationBar()
+      : const _DesktopNavigationBar();
 }

@@ -33,14 +33,16 @@ class TasksMobileScreen extends ConsumerWidget {
     Widget child = _ListSection(tasks: tasks);
 
     if (taskID != null && tasks.map((e) => e.id).contains(taskID)) {
-      child = _DetailSection(task: tasks.singleWhere((e) => e.id == taskID),);
+      child = _DetailSection(
+        task: tasks.singleWhere((e) => e.id == taskID),
+      );
     }
 
     return SafeArea(
-        child: SingleChildScrollView(
-            physics: const ClampingScrollPhysics(),
-            child: child,
-        ),
-      );
+      child: SingleChildScrollView(
+        physics: const ClampingScrollPhysics(),
+        child: child,
+      ),
+    );
   }
 }

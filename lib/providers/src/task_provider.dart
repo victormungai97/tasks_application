@@ -4,7 +4,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 /// ``[NotifierProvider]`` that keeps track of task that has been selected
 /// via the task ID
-final taskIDProvider = NotifierProvider<TaskIDNotifier, String?>(TaskIDNotifier.new,);
+final taskIDProvider = NotifierProvider<TaskIDNotifier, String?>(
+  TaskIDNotifier.new,
+);
 
 /// Exposes task ID as state that can change over time
 class TaskIDNotifier extends Notifier<String?> {

@@ -34,8 +34,8 @@ class TasksPage extends ConsumerWidget {
         return Text('${context.localize.error}: $err');
       },
       data: (tasks) => context.isMobileView
-            ? TasksMobileScreen(tasks: tasks)
-            : TasksDesktopScreen(tasks: tasks),
+          ? TasksMobileScreen(tasks: tasks)
+          : TasksDesktopScreen(tasks: tasks),
     );
   }
 }

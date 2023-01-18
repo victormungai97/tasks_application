@@ -60,5 +60,4 @@ class LocaleNotifier extends StateNotifier<Locale> {
       state = initial;
     }
   }
-
 }

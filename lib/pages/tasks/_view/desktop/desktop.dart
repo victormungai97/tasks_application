@@ -41,7 +41,9 @@ class TasksDesktopScreen extends HookConsumerWidget {
     } else if (!tasks.map((e) => e.id).contains(taskID)) {
       detail.value = Center(child: Text(context.localize.invalid_task));
     } else {
-      detail.value = _DetailSection(task: tasks.singleWhere((e) => e.id == taskID),);
+      detail.value = _DetailSection(
+        task: tasks.singleWhere((e) => e.id == taskID),
+      );
     }
 
     return SizedBox(

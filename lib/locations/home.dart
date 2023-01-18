@@ -21,8 +21,9 @@ class HomeLocation extends BeamLocation<BeamState> {
           child: ClipRect(
             child: Banner(
               message: context.localize.github_prompt,
-              location:
-                  context.isMobileView ? BannerLocation.bottomEnd : BannerLocation.topStart,
+              location: context.isMobileView
+                  ? BannerLocation.bottomEnd
+                  : BannerLocation.topStart,
               child: Material(
                 child: GestureDetector(
                   child: (context.currentBeamLocation.state as BeamState)
