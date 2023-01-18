@@ -10,7 +10,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 /// ``[Provider]`` that hold the locales used in the app
 final localesProvider = Provider((ref) => AppLocalizations.supportedLocales);
 
-/// ``[Provider]`` used to access the ``[AppLocalizations]`` object for the current locale
+/// ``[Provider]`` used to access the ``[AppLocalizations]`` object
+/// for the current locale
 /// It is available through out the app
 /// thus allowing access to localized strings outside our widgets
 final appLocalizationsProvider = Provider<AppLocalizations>((ref) {

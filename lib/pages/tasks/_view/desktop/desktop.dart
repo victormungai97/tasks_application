@@ -6,7 +6,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:task_list_app/extensions/extensions.dart';
-import 'package:task_list_app/locations/locations.dart';
 import 'package:task_list_app/model/model.dart';
 import 'package:task_list_app/providers/providers.dart';
 
