@@ -1,7 +1,6 @@
 // lib/providers/src/localization_provider.dart
 
 import 'dart:developer';
-import 'dart:ui' as ui;
 
 import 'package:flutter/widgets.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -16,10 +15,10 @@ final localesProvider = Provider((ref) => AppLocalizations.supportedLocales);
 /// thus allowing access to localized strings outside our widgets
 final appLocalizationsProvider = Provider<AppLocalizations>((ref) {
   // initialize from the initial locale
-  ref.state = lookupAppLocalizations(ui.window.locale);
+  ref.state = lookupAppLocalizations(ref.watch(localeProvider));
   //  create an observer to update the state
   final observer = _LocaleObserver((locales) {
-    ref.state = lookupAppLocalizations(ui.window.locale);
+    ref.state = lookupAppLocalizations(ref.watch(localeProvider));
   });
   // register the observer and dispose it when no longer needed
   final binding = WidgetsBinding.instance..addObserver(observer);

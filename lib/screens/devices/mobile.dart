@@ -55,7 +55,7 @@ class Mobile extends HookConsumerWidget {
                               ),
                               padding: const EdgeInsets.all(10),
                               child: Text(
-                                locale.toLanguageTag(),
+                                AppFunctions.languages(ref,)[locale.toLanguageTag()]!,
                                 textAlign: TextAlign.center,
                               ),
                             ),
@@ -68,6 +68,7 @@ class Mobile extends HookConsumerWidget {
                   );
                 },
               ),
+              tooltip: context.localize.change_language,
               icon: const Icon(Icons.translate),
             ),
           ),

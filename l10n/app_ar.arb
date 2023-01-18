@@ -50,5 +50,14 @@
   "page_not_found": "الصفحة غير موجودة",
   "@page_not_found": {
     "description": "Label for a route not implemented"
-  }
+  },
+  "read_emails_from_mailbox": "قراءة رسائل البريد الإلكتروني من صندوق البريد",
+  "check_latest_news_on_flutter": "تحقق من آخر الأخبار على Flutter",
+  "have_a_call_with_flutter_team": "اتصل بفريق Flutter",
+  "work_on_application_performance": "العمل على أداء التطبيق",
+  "plan_work_for_next_week": "خطة العمل للأسبوع المقبل",
+  "order_lunch": "اطلب الغداء",
+  "create_an_invoice_for_last_month": "قم بإنشاء فاتورة للشهر الماضي",
+  "arabic": "عربي",
+  "english": "إنجليزي"
 }
