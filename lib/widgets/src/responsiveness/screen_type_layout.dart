@@ -1,6 +1,6 @@
-// lib/widgets/src/responsiveness/src/screen_type_layout.dart
+// lib/widgets/src/responsiveness/screen_type_layout.dart
 
-part of '../responsiveness.dart';
+part of 'responsiveness.dart';
 
 /// Widget that provides a user interface that varying depending on the
 /// width of the end user's device screen.

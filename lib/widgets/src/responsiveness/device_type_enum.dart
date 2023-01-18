@@ -1,6 +1,6 @@
-// lib/widgets/src/responsiveness/src/device_type_enum.dart
+// lib/widgets/src/responsiveness/device_type_enum.dart
 
-part of '../responsiveness.dart';
+part of 'responsiveness.dart';
 
 /// Constants representing various devices with respect to their screen widths
 

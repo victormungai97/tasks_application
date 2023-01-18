@@ -13,7 +13,7 @@ class TeamsLocation extends BeamLocation<BeamState> {
   List<BeamPage> buildPages(BuildContext context, BeamState state) => [
         BeamPage(
           key: ValueKey('teams-${DateTime.now()}'),
-          title: 'Teams',
+          title: context.localize.teams,
           child: const TeamsPage(),
         )
       ];

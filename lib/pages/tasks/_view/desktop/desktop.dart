@@ -2,10 +2,12 @@
 
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
+import 'package:task_list_app/extensions/extensions.dart';
 import 'package:task_list_app/model/model.dart';
-import 'package:task_list_app/service/service.dart' hide Task;
+import 'package:task_list_app/providers/providers.dart';
 
 part 'detail.dart';
 part 'list.dart';
@@ -14,7 +16,7 @@ final _dateFormat = DateFormat('dd/MM, H:mm');
 
 /// Tasks UI screen on large width devices
 
-class TasksDesktopScreen extends ConsumerWidget {
+class TasksDesktopScreen extends HookConsumerWidget {
   /// Constructor for ``[TasksDesktopScreen]``
   const TasksDesktopScreen({super.key, this.tasks = const []});
 
@@ -24,15 +26,24 @@ class TasksDesktopScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     if (tasks.isEmpty) {
-      return const Center(child: Text('No tasks provided'));
+      return Center(child: Text(context.localize.missing_tasks));
     }
 
     // 1. watch the task ID provider and rebuild when the value changes
-    final taskID = ref.watch(taskServiceProvider);
+    final taskID = ref.watch(taskIDProvider);
+
     // 2. select appropriate task based on given ID
-    final task = taskID != null && tasks.map((e) => e.id).contains(taskID)
-        ? tasks.singleWhere((e) => e.id == taskID)
-        : null;
+    final detail = useState<Widget>(const SizedBox());
+
+    if (taskID == null || taskID.isEmpty) {
+      detail.value = Center(child: Text(context.localize.empty_task));
+    } else if (!tasks.map((e) => e.id).contains(taskID)) {
+      detail.value = Center(child: Text(context.localize.invalid_task));
+    } else {
+      detail.value = _DetailSection(
+        task: tasks.singleWhere((e) => e.id == taskID),
+      );
+    }
 
     return SizedBox(
       height: MediaQuery.of(context).size.height,
@@ -45,10 +56,10 @@ class TasksDesktopScreen extends ConsumerWidget {
                 ),
                 const VerticalDivider(thickness: 2),
                 // 3. use the selected task
-                Expanded(child: _DetailSection(task: task)),
+                Expanded(child: detail.value),
               ],
             )
-          : const Center(child: Text('Tasks')),
+          : Center(child: Text(context.localize.tasks)),
     );
   }
 }

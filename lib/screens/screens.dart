@@ -6,10 +6,10 @@ import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:task_list_app/common/common.dart';
+import 'package:task_list_app/extensions/extensions.dart';
 import 'package:task_list_app/locations/locations.dart';
-import 'package:task_list_app/service/service.dart';
-import 'package:task_list_app/widgets/src/app_navigation_bar.dart';
-import 'package:task_list_app/widgets/src/responsiveness/responsiveness.dart';
+import 'package:task_list_app/providers/providers.dart';
+import 'package:task_list_app/widgets/widgets.dart';
 
 /* Base widgets depending on the type of device based on screen width */
 
@@ -55,8 +55,8 @@ class _ScreenState extends ConsumerState<Screen> {
       } else {
         pageIndex = -1;
       }
-      ref.read(indexServiceProvider.notifier).state = pageIndex;
-      routerDelegates[ref.read(indexServiceProvider) + 1].update(
+      ref.read(pageIndexProvider.notifier).state = pageIndex;
+      routerDelegates[ref.read(pageIndexProvider) + 1].update(
         rebuild: false,
       );
     });

@@ -13,7 +13,7 @@ class ProjectsLocation extends BeamLocation<BeamState> {
   List<BeamPage> buildPages(BuildContext context, BeamState state) => [
         BeamPage(
           key: ValueKey('projects-${DateTime.now()}'),
-          title: 'Projects',
+          title: context.localize.projects,
           child: const ProjectsPage(),
         )
       ];

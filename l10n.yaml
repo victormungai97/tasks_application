@@ -1,0 +1,8 @@
+# l10n.yaml
+
+# Configuration file adapted with options for customizing process of localization
+
+arb-dir: l10n
+template-arb-file: app_en.arb
+output-localization-file: app_localizations.dart
+nullable-getter: false      # Ensure `AppLocalizations` instance returned by `AppLocalizations.of(context)` is always non-null

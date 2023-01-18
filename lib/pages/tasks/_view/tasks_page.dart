@@ -3,10 +3,10 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:task_list_app/extensions/extensions.dart';
 import 'package:task_list_app/pages/tasks/_view/desktop/desktop.dart';
 import 'package:task_list_app/pages/tasks/_view/mobile/mobile.dart';
-import 'package:task_list_app/service/service.dart';
-import 'package:task_list_app/widgets/widgets.dart';
+import 'package:task_list_app/providers/providers.dart';
 
 export 'desktop/desktop.dart';
 export 'mobile/mobile.dart';
@@ -31,19 +31,11 @@ class TasksPage extends ConsumerWidget {
           stackTrace: stack,
           time: DateTime.now(),
         );
-        return Text('Error: $err');
+        return Text('${context.localize.error}: $err');
       },
-      data: (tasks) {
-        final mediaQuery = MediaQuery.of(context);
-        final deviceScreenType = getDeviceType(mediaQuery);
-        final orientation = mediaQuery.orientation;
-
-        return deviceScreenType == DeviceScreenType.mobile ||
-                (deviceScreenType == DeviceScreenType.tablet &&
-                    orientation == Orientation.portrait)
-            ? const TasksMobileScreen()
-            : TasksDesktopScreen(tasks: tasks);
-      },
+      data: (tasks) => context.isMobileView
+          ? TasksMobileScreen(tasks: tasks)
+          : TasksDesktopScreen(tasks: tasks),
     );
   }
 }

@@ -1,14 +1,16 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:task_list_app/common/common.dart';
-import 'package:task_list_app/service/service.dart';
+// lib/widgets/src/navigation_bar/desktop_navigation_bar.dart
 
-class AppNavigationBar extends ConsumerWidget {
-  const AppNavigationBar({super.key});
+part of 'navigation_bar.dart';
+
+class _DesktopNavigationBar extends ConsumerWidget {
+  const _DesktopNavigationBar();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final currentIndex = ref.watch(indexServiceProvider);
+    final currentIndex = ref.watch(pageIndexProvider);
+
+    final navigationBarItems = _navigationBarItems(context.localize);
+
     return ColoredBox(
       color: AppStyle.navigationBgColor,
       child: ListView.separated(
@@ -37,7 +39,9 @@ class AppNavigationBar extends ConsumerWidget {
 
 class _NavigationBarListItem extends StatelessWidget {
   const _NavigationBarListItem({required this.item, this.selected = false});
-  final NavigationBarItem item;
+
+  final _NavigationBarItem item;
+
   final bool selected;
 
   @override
@@ -58,32 +62,4 @@ class _NavigationBarListItem extends StatelessWidget {
       ),
     );
   }
-}
-
-final navigationBarItems = [
-  // TODO: labels should be in app localization file
-  NavigationBarItem(
-    name: 'Tasks',
-    url: 'tasks',
-    icon: const Icon(Icons.task_alt_sharp),
-  ),
-  NavigationBarItem(
-    name: 'Projects',
-    url: 'projects',
-    icon: const Icon(Icons.work),
-  ),
-  NavigationBarItem(
-    name: 'Teams',
-    url: 'teams',
-    icon: const Icon(Icons.groups),
-  ),
-];
-
-class NavigationBarItem {
-  final String name;
-  final String url;
-  final Widget icon;
-
-  NavigationBarItem(
-      {required this.name, required this.url, this.icon = const Placeholder()});
 }

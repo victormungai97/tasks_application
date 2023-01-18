@@ -1,6 +1,6 @@
-// lib/widgets/src/responsiveness/src/sizing_info.dart
+// lib/widgets/src/responsiveness/sizing_info.dart
 
-part of '../responsiveness.dart';
+part of 'responsiveness.dart';
 
 /// Class having attributes uniquely identifying a device & widget's conditions.
 class SizingInformation {

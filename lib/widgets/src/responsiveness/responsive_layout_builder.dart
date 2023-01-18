@@ -1,6 +1,6 @@
-// lib/widgets/src/responsiveness/src/responsive_layout_builder.dart
+// lib/widgets/src/responsiveness/responsive_layout_builder.dart
 
-part of '../responsiveness.dart';
+part of 'responsiveness.dart';
 
 /// The signature of the [LayoutBuilder] builder function.
 typedef ResponsiveLayoutWidgetBuilder = Widget Function(
