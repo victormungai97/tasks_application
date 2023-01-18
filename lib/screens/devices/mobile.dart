@@ -55,7 +55,9 @@ class Mobile extends HookConsumerWidget {
                               ),
                               padding: const EdgeInsets.all(10),
                               child: Text(
-                                AppFunctions.languages(ref,)[locale.toLanguageTag()]!,
+                                AppFunctions.languages(
+                                  ref,
+                                )[locale.toLanguageTag()]!,
                                 textAlign: TextAlign.center,
                               ),
                             ),

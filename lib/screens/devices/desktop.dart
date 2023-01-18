@@ -64,7 +64,9 @@ class Desktop extends ConsumerWidget {
                                   ),
                                   padding: const EdgeInsets.all(10),
                                   child: Text(
-                                    AppFunctions.languages(ref,)[locale.toLanguageTag()]!,
+                                    AppFunctions.languages(
+                                      ref,
+                                    )[locale.toLanguageTag()]!,
                                     style: const TextStyle(
                                       fontWeight: FontWeight.w700,
                                       color: AppStyle.lightTextColor,
