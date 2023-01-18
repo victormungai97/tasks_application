@@ -1,6 +1,6 @@
-// lib/widgets/src/responsiveness/src/orientation_layout.dart
+// lib/widgets/src/responsiveness/orientation_layout.dart
 
-part of '../responsiveness.dart';
+part of 'responsiveness.dart';
 
 /// Widget that provides a user interface that varying depending on the
 /// direction in the device is facing / rotated

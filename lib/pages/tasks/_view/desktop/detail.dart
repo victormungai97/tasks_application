@@ -10,7 +10,7 @@ class _DetailSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (task == null) {
-      return const Center(child: Text('Select a task to view it'));
+      return Center(child: Text(context.localize.empty_task));
     }
 
     final duty = task!;
@@ -22,7 +22,7 @@ class _DetailSection extends StatelessWidget {
             alignment: Alignment.bottomLeft,
             padding: const EdgeInsets.only(left: 28),
             child: Text(
-              duty.title ?? 'Untitled',
+              duty.title ?? context.localize.task,
               style: const TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w500,

@@ -1,0 +1,54 @@
+{
+  "appTitle": "تطبيق قائمة المهام",
+  "@appTitle": {
+    "description": "The title of the application"
+  },
+  "home": "مسكن",
+  "@home": {
+    "description": "Label for Home Page"
+  },
+  "tasks": "مهام",
+  "@tasks": {
+    "description": "Label for Tasks Page"
+  },
+  "task": "مهمة",
+  "@task": {
+    "description": "Label for Individual Task"
+  },
+  "projects": "المشاريع",
+  "@projects": {
+    "description": "Label for Projects Page"
+  },
+  "teams": "فرق",
+  "@teams": {
+    "description": "Label for Teams Page"
+  },
+  "change_language": "تغيير اللغة",
+  "@change_language": {
+    "description": "Text to prompt language change"
+  },
+  "error": "خطأ",
+  "@error": {
+    "description": "Label for Error message"
+  },
+  "github_prompt": "شوكة لي على جيثب",
+  "@github_prompt": {
+    "description": "Prompt to view on GitHub"
+  },
+  "missing_tasks": "لم يتم توفير مهام",
+  "@missing_tasks": {
+    "description": "Message when no tasks are available"
+  },
+  "empty_task": "حدد مهمة لعرضها",
+  "@empty_task": {
+    "description": "Message when task is missing"
+  },
+  "invalid_task": "تم تقديم مهمة غير صالحة",
+  "@invalid_task": {
+    "description": "Message when task provided is invalid"
+  },
+  "page_not_found": "الصفحة غير موجودة",
+  "@page_not_found": {
+    "description": "Label for a route not implemented"
+  }
+}

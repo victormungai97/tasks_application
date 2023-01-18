@@ -7,13 +7,11 @@
 
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_context/riverpod_context.dart';
-import 'package:task_list_app/model/model.dart';
+import 'package:task_list_app/extensions/extensions.dart';
 import 'package:task_list_app/pages/pages.dart';
+import 'package:task_list_app/providers/providers.dart';
 import 'package:task_list_app/screens/screens.dart';
-import 'package:task_list_app/service/service.dart' hide Task;
-import 'package:task_list_app/widgets/widgets.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 /* Navigation is done by declaration of 1 or more `BeamLocation` subclasses. */
@@ -37,8 +35,11 @@ final routerDelegates = [
   BeamerDelegate(
     initialPath: '/tasks',
     locationBuilder: (routeInformation, _) {
-      if (routeInformation.location!.contains('tasks')) {
+      if (routeInformation.location! == '/tasks') {
         return TasksLocation(routeInformation);
+      }
+      if (routeInformation.location!.contains('tasks')) {
+        return TaskDetailLocation(routeInformation);
       }
       return NotFound(path: routeInformation.location!);
     },

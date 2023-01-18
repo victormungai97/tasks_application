@@ -2,20 +2,17 @@
 
 part of 'mobile.dart';
 
-/// UI for list on mobile
-class ListSection extends ConsumerWidget {
-  /// Constructor for ``[ListSection]``
-  const ListSection({super.key, this.tasks = const []});
+class _ListSection extends ConsumerWidget {
+  const _ListSection({this.tasks = const []});
 
   /// List of tasks to be rendered
   final List<Task> tasks;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final taskID = ref.watch(taskServiceProvider);
+    final taskID = ref.watch(taskIDProvider);
 
-    return TasksMobileScreen(
-      child: Column(
+    return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
@@ -23,12 +20,12 @@ class ListSection extends ConsumerWidget {
             alignment: Alignment.bottomLeft,
             margin: const EdgeInsets.only(left: 28, bottom: 2.5),
             child: Row(
-              children: const [
+              children: [
                 Expanded(
                   flex: 7,
                   child: Text(
-                    'Tasks',
-                    style: TextStyle(
+                    context.localize.tasks,
+                    style: const TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.w500,
                       fontSize: 24,
@@ -48,7 +45,7 @@ class ListSection extends ConsumerWidget {
           ...tasks.map(
             (element) {
               final dt = element.dateTime ?? DateTime.now();
-              final title = element.title ?? 'Task ${tasks.indexOf(element)}';
+              final title = element.title ?? '${context.localize.task} ${tasks.indexOf(element)}';
 
               return Padding(
                 padding: const EdgeInsets.fromLTRB(16, 0, 16, 15),
@@ -70,13 +67,12 @@ class ListSection extends ConsumerWidget {
                     ),
                   ),
                   onTap: () =>
-                      context.beamToNamed('/tasks/${element.id ?? ""}'),
+                      context.beamToNamed('/tasks/${element.id ?? ""}',),
                 ),
               );
             },
           ),
         ],
-      ),
-    );
+      );
   }
 }

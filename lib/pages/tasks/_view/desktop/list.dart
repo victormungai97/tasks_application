@@ -9,7 +9,7 @@ class _ListSection extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final taskID = ref.watch(taskServiceProvider);
+    final taskID = ref.watch(taskIDProvider);
 
     return Column(
       children: [
@@ -17,9 +17,9 @@ class _ListSection extends ConsumerWidget {
           child: Container(
             alignment: Alignment.bottomLeft,
             padding: const EdgeInsets.only(left: 28),
-            child: const Text(
-              'Tasks',
-              style: TextStyle(
+            child: Text(
+              context.localize.tasks,
+              style: const TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w500,
                 fontSize: 20,
@@ -47,7 +47,7 @@ class _ListSection extends ConsumerWidget {
                   (element) {
                     final dt = element.dateTime ?? DateTime.now();
                     final title =
-                        element.title ?? 'Task ${tasks.indexOf(element)}';
+                        element.title ?? '${context.localize.task} ${tasks.indexOf(element)}';
 
                     return Padding(
                       padding: const EdgeInsets.only(bottom: 15),
@@ -68,9 +68,11 @@ class _ListSection extends ConsumerWidget {
                             color: Colors.grey.shade700,
                           ),
                         ),
-                        onTap: () => context.beamToNamed(
-                          '/tasks/${element.id ?? ""}',
-                        ),
+                        onTap: () {
+                          context.beamToNamed(
+                          '/tasks/${element.id ?? ""}'
+                        );
+                        },
                       ),
                     );
                   },

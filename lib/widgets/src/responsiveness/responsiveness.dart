@@ -5,9 +5,9 @@
 
 import 'package:flutter/widgets.dart';
 
-part './src/device_type_enum.dart';
-part './src/orientation_layout.dart';
-part './src/responsive_layout_builder.dart';
-part './src/screen_type_layout.dart';
-part './src/sizing_info.dart';
-part './src/utils.dart';
+part 'device_type_enum.dart';
+part 'orientation_layout.dart';
+part 'responsive_layout_builder.dart';
+part 'screen_type_layout.dart';
+part 'sizing_info.dart';
+part 'utils.dart';

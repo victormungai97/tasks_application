@@ -1,13 +1,18 @@
-import 'package:flutter/material.dart';
+// lib/pages/teams/_view/teams_page.dart
 
+import 'package:flutter/material.dart';
+import 'package:task_list_app/extensions/extensions.dart';
+
+/// View for page rendering groups that a user is part of
 class TeamsPage extends StatelessWidget {
-  const TeamsPage({Key? key}) : super(key: key);
+  /// Constructor for ``[TeamsPage]``
+  const TeamsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Center(
-      // TODO: labels should be in app localization file
-      child: Text('Teams'),
+      // Access the localized string
+      child: Text(context.localize.teams),
     );
   }
 }

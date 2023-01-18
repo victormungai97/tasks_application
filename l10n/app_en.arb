@@ -1,0 +1,54 @@
+{
+  "appTitle": "Task list App",
+  "@appTitle": {
+    "description": "The title of the application"
+  },
+  "home": "Home",
+  "@home": {
+    "description": "Label for Home Page"
+  },
+  "tasks": "Tasks",
+  "@tasks": {
+    "description": "Label for Tasks Page"
+  },
+  "task": "Task",
+  "@task": {
+    "description": "Label for Individual Task"
+  },
+  "projects": "Projects",
+  "@projects": {
+    "description": "Label for Projects Page"
+  },
+  "teams": "Teams",
+  "@teams": {
+    "description": "Label for Teams Page"
+  },
+  "change_language": "Change Language",
+  "@change_language": {
+    "description": "Text to prompt language change"
+  },
+  "error": "Error",
+  "@error": {
+    "description": "Label for Error message"
+  },
+  "github_prompt": "Fork me on GitHub",
+  "@github_prompt": {
+    "description": "Prompt to view on GitHub"
+  },
+  "missing_tasks": "No tasks provided",
+  "@missing_tasks": {
+    "description": "Message when no tasks are available"
+  },
+  "empty_task": "Select a task to view it",
+  "@empty_task": {
+    "description": "Message when task is missing"
+  },
+  "invalid_task": "Invalid task provided",
+  "@invalid_task": {
+    "description": "Message when task provided is invalid"
+  },
+  "page_not_found": "Page Not Found",
+  "@page_not_found": {
+    "description": "Label for a route not implemented"
+  }
+}

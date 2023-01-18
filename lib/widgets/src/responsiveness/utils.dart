@@ -1,6 +1,6 @@
-// lib/widgets/src/responsiveness/src/utils.dart
+// lib/widgets/src/responsiveness/utils.dart
 
-part of '../responsiveness.dart';
+part of 'responsiveness.dart';
 
 /// Identify and specify on which likely devices the user is accessing the app
 

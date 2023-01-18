@@ -2,21 +2,22 @@
 
 part of 'mobile.dart';
 
-/// UI for details on mobile
-class DetailSection extends ConsumerWidget {
-  /// Constructor for ``[DetailSection]``
-  const DetailSection({super.key, this.task});
+class _DetailSection extends ConsumerWidget {
+  const _DetailSection({this.task});
 
   /// Task details to be rendered
   final Task? task;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    if (task == null) {
+      return Center(child: Text(context.localize.empty_task));
+    }
+
     // watch the FutureProvider and get an AsyncValue<List<Task>>
     final tasksAsync = ref.watch(tasksFutureProvider);
 
-    return TasksMobileScreen(
-      child: Column(
+    return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
@@ -28,7 +29,7 @@ class DetailSection extends ConsumerWidget {
                 Expanded(
                   flex: 7,
                   child: Text(
-                    task?.title ?? 'Untitled',
+                    task?.title ?? context.localize.task,
                     style: const TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.w500,
@@ -47,31 +48,31 @@ class DetailSection extends ConsumerWidget {
                     child: tasksAsync.when(
                       loading: () => const CircularProgressIndicator(),
                       error: (err, stack) {
-                        return Text('Error: $err');
+                        return Text('${context.localize.error}: $err');
                       },
                       data: (tasks) => DropdownButtonFormField<Task>(
-                        hint: const Text('Tasks'),
+                        hint: Text(context.localize.tasks),
                         decoration: InputDecoration(
                           enabledBorder: OutlineInputBorder(
                             borderSide: const BorderSide(
-                                color: Colors.blueGrey, width: 2),
+                                color: Colors.blueGrey, width: 2,),
                             borderRadius: BorderRadius.circular(20),
                           ),
                           border: OutlineInputBorder(
                             borderSide: const BorderSide(
-                                color: Colors.blueGrey, width: 2),
+                                color: Colors.blueGrey, width: 2,),
                             borderRadius: BorderRadius.circular(20),
                           ),
                           filled: true,
                         ),
                         value: task,
                         onChanged: (selected) =>
-                            context.beamToNamed('/tasks/${selected?.id ?? ""}'),
+                            context.beamToNamed('/tasks/${selected?.id ?? ""}',),
                         items: tasks
                             .map(
                               (e) => DropdownMenuItem<Task>(
                                 value: e,
-                                child: Text("Task ${e.id ?? ''}"),
+                                child: Text("${context.localize.task} ${e.id ?? ''}",),
                               ),
                             )
                             .toList(growable: false),
@@ -89,9 +90,9 @@ class DetailSection extends ConsumerWidget {
             thickness: 1.5,
           ),
           if (task == null)
-            const Padding(
-              padding: EdgeInsets.only(top: 18),
-              child: Center(child: Text('Select a task to view it')),
+            Padding(
+              padding: const EdgeInsets.only(top: 18),
+              child: Center(child: Text(context.localize.empty_task)),
             )
           else ...[
             Padding(
@@ -120,7 +121,6 @@ class DetailSection extends ConsumerWidget {
             ),
           ],
         ],
-      ),
-    );
+      );
   }
 }

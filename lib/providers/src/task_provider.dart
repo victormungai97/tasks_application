@@ -1,13 +1,13 @@
-// lib/service/src/task_service.dart
+// lib/providers/src/task_provider.dart
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 /// ``[NotifierProvider]`` that keeps track of task that has been selected
 /// via the task ID
-final taskServiceProvider = NotifierProvider<Task, String?>(Task.new);
+final taskIDProvider = NotifierProvider<TaskIDNotifier, String?>(TaskIDNotifier.new,);
 
 /// Exposes task ID as state that can change over time
-class Task extends Notifier<String?> {
+class TaskIDNotifier extends Notifier<String?> {
   @override
   String? build() {
     return null;
