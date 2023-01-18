@@ -13,4 +13,10 @@ class AppFunctions {
     await Future<dynamic>.delayed(const Duration(milliseconds: 5));
     routerDelegates[ref.read(pageIndexProvider) + 1].update(rebuild: false);
   }
+
+  /// Map supported locale codes to language names
+  static Map<String, String> languages(WidgetRef ref) {
+    final loc = ref.watch(appLocalizationsProvider);
+    return {'ar': loc.arabic, 'en': loc.english};
+  }
 }

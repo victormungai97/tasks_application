@@ -2,6 +2,7 @@
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:task_list_app/model/model.dart';
+import 'package:task_list_app/providers/src/localization_provider.dart';
 import 'package:task_list_app/service/network_service.dart';
 
 /// ``[FutureProvider]`` which retrieve an instance of ``[NetworkService]``
@@ -19,5 +20,6 @@ final tasksFutureProvider = FutureProvider.autoDispose<List<Task>>((ref) {
 /// which is unchangeable,
 /// for use in other parts of the code base.
 final networkServiceProvider = Provider<NetworkService>((ref) {
-  return NetworkService();
+  // pass the dependency explicitly (using watch)
+  return NetworkService(loc: ref.watch(appLocalizationsProvider));
 });

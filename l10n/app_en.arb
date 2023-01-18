@@ -50,5 +50,14 @@
   "page_not_found": "Page Not Found",
   "@page_not_found": {
     "description": "Label for a route not implemented"
-  }
+  },
+  "read_emails_from_mailbox": "Read emails from mailbox",
+  "check_latest_news_on_flutter": "Check latest news on Flutter",
+  "have_a_call_with_flutter_team": "Have a call with Flutter team",
+  "work_on_application_performance": "Work on application performance",
+  "plan_work_for_next_week": "Plan work for next week",
+  "order_lunch": "Order lunch",
+  "create_an_invoice_for_last_month": "Create an invoice for last month",
+  "arabic": "Arabic",
+  "english": "English"
 }
